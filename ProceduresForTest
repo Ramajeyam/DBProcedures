@@ -1,0 +1,64 @@
+# DBProcedures
+
+USE [ICHD_DB]
+GO
+/****** Object:  StoredProcedure [dbo].[insertNewCustomer]    Script Date: 12/18/2017 5:57:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[insertNewCustomer]
+(
+	@first_name varchar(255),
+	@last_name varchar(255),
+	@father_name varchar(255),
+	@mother_name varchar(255),
+	@email_id varchar(255),
+	@account_password varchar(255),
+	@dob date,
+	@mobile_no varchar(12),
+	@alternate_mobile_no varchar(12),
+	@pan_no varchar(10),
+	@aadhar_no varchar(12),
+	@address_one varchar(255),
+	@address_two varchar(255),
+	@inserted_customer_id int out
+)
+as
+Begin
+	Insert into dbo.customer 
+	(
+		first_name,
+		last_name,
+		father_name,
+		mother_name,
+		email_id,
+		account_password,
+		dob,
+		mobile_no,
+		alternate_mobile_no,
+		pan_no,
+		aadhar_no,
+		address_one,
+		address_two
+	)
+	values 
+	(
+		@first_name,
+		@last_name,
+		@father_name,
+		@mother_name,
+		@email_id,
+		@account_password,
+		@dob,
+		@mobile_no,
+		@alternate_mobile_no,
+		@pan_no,
+		@aadhar_no,
+		@address_one,
+		@address_two
+	);
+
+	set @inserted_customer_id = SCOPE_IDENTITY();
+End;
+
